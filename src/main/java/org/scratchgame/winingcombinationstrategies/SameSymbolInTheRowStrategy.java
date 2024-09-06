@@ -23,7 +23,7 @@ public class SameSymbolInTheRowStrategy implements WinningCombinationStrategy {
           GroupType.LTR_DIAGONALLY_LINEAR_SYMBOLS.equals(combination.group()) ||
           GroupType.RTL_DIAGONALLY_LINEAR_SYMBOLS.equals(combination.group())) {
         for (List<String> coveredArea : combination.coveredArea()) {
-          String firstSymbol = map.getMap()[getRow.apply(coveredArea.get(0))][getCol.apply(coveredArea.get(0))];
+          String firstSymbol = map.getMap()[getRow.apply(coveredArea.getFirst())][getCol.apply(coveredArea.getFirst())];
           boolean isWinning = true;
 
           for (String position : coveredArea) {

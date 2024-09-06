@@ -2,7 +2,6 @@ package org.scratchgame.service;
 
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 import org.scratchgame.config.DefaultGameSettings;
 import org.scratchgame.dto.GameConfigDto;
@@ -72,6 +71,6 @@ public class MapGeneratorImpl implements MapGenerator {
     return config.probabilities().standardProbability().stream()
       .filter(probability -> probability.row() == row && probability.column() == col)
       .findFirst()
-      .orElse(config.probabilities().standardProbability().get(0));
+      .orElse(config.probabilities().standardProbability().getFirst());
   }
 }
