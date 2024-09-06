@@ -2,7 +2,6 @@ package org.scratchgame.service;
 
 import org.scratchgame.dto.GameConfigDto;
 import org.scratchgame.dto.GameResultDto;
-import org.scratchgame.winingcombinationstrategies.CalculationService;
 
 public class GameServiceImpl implements GameService {
 

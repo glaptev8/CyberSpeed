@@ -9,7 +9,7 @@ import org.scratchgame.service.GameService;
 import org.scratchgame.service.GameServiceImpl;
 import org.scratchgame.service.MapGeneratorImpl;
 import org.scratchgame.service.WinningCombinationServiceImpl;
-import org.scratchgame.winingcombinationstrategies.CalculationServiceImpl;
+import org.scratchgame.service.CalculationServiceImpl;
 import org.scratchgame.winingcombinationstrategies.SameSymbolInTheRowStrategy;
 import org.scratchgame.winingcombinationstrategies.SameSymbolsStrategy;
 
@@ -27,16 +27,17 @@ public class ScratchGameMain {
   }
 
   public static void main(String[] args) throws IOException {
-    if (args.length == 0) {
-      System.out.println("Please provide the path to the config file as a parameter.");
+    if (args.length != 2) {
+      System.out.println("Please provide the path to the config file as a parameter and bet");
       return;
     }
 
     var filePath = args[0];
     var parserService = new ConfigFileParserServiceImpl();
-    var config = parserService.parse(filePath);
+    var gameConfig = parserService.parse(filePath);
+    var result = gameService.run(gameConfig, Integer.parseInt(args[1]));
 
     var instance = ConfigObjectMapper.getInstance();
-    System.out.println(instance.writerWithDefaultPrettyPrinter().writeValueAsString(gameService.run(config, Integer.parseInt(args[1]))));
+    System.out.println(instance.writerWithDefaultPrettyPrinter().writeValueAsString(result));
   }
 }

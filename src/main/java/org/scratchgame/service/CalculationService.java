@@ -1,4 +1,4 @@
-package org.scratchgame.winingcombinationstrategies;
+package org.scratchgame.service;
 
 import java.util.List;
 import java.util.Map;

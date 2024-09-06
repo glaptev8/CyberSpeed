@@ -1,4 +1,4 @@
-package org.scratchgame.winingcombinationstrategies;
+package org.scratchgame.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
