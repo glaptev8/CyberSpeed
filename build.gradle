@@ -6,7 +6,7 @@ group = 'org.scratchgame'
 version = '1.0-SNAPSHOT'
 
 java {
-  sourceCompatibility = '21'
+  sourceCompatibility = "$javaVersion"
 }
 
 repositories {
