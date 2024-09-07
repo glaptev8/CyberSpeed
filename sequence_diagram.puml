@@ -1,0 +1,23 @@
+@startuml
+actor User as u
+participant "ScratchGameMain" as Main
+participant "ConfigFileParserService" as Parser
+participant "GameService" as Game
+participant "MapGenerator" as MapGen
+participant "WinningCombinationService" as WinComb
+participant "CalculationService" as Calc
+
+u -> Main: Start the game
+Main -> Parser: Read config file
+Parser -> Main: Return game config
+Main -> Game: Run game (config, bet)
+Game -> MapGen: Generate map
+MapGen -> Game: Return map
+Game -> WinComb: Check for winning combinations
+WinComb -> Game: Return winning combinations
+Game -> Calc: Calculate final reward
+Calc -> Game: Return reward
+Game -> Main: Return game result
+Main -> u: Display result
+
+@enduml

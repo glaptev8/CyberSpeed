@@ -1,0 +1,26 @@
+@startuml
+package "Game Logic" {
+  component GameService
+  component MapGenerator
+  component WinningCombinationService
+  component CalculationService
+}
+
+package "Infrastructure" {
+  component ConfigFileParserService
+  component ConfigObjectMapper
+}
+
+package "UI" {
+  component ScratchGameMain
+}
+
+ScratchGameMain --> ConfigFileParserService: Read config
+ConfigFileParserService --> ConfigObjectMapper: Parse JSON
+ScratchGameMain --> GameService: Run game
+
+GameService --> MapGenerator: Generate map
+GameService --> WinningCombinationService: Check combinations
+GameService --> CalculationService: Calculate reward
+
+@enduml
