@@ -27,15 +27,25 @@ public class ScratchGameMain {
   }
 
   public static void main(String[] args) throws IOException {
-    if (args.length != 2) {
-      System.out.println("Please provide the path to the config file as a parameter and bet");
+    String filePath = null;
+    int bettingAmount = 0;
+
+    for (int i = 0; i < args.length; i++) {
+      if (args[i].equals("--config")) {
+        filePath = args[i + 1];
+      } else if (args[i].equals("--betting-amount")) {
+        bettingAmount = Integer.parseInt(args[i + 1]);
+      }
+    }
+
+    if (filePath == null || bettingAmount == 0) {
+      System.out.println("Please provide both --config <path> and --betting-amount <amount>");
       return;
     }
 
-    var filePath = args[0];
     var parserService = new ConfigFileParserServiceImpl();
     var gameConfig = parserService.parse(filePath);
-    var result = gameService.run(gameConfig, Integer.parseInt(args[1]));
+    var result = gameService.run(gameConfig, bettingAmount);
 
     var instance = ConfigObjectMapper.getInstance();
     System.out.println(instance.writerWithDefaultPrettyPrinter().writeValueAsString(result));
