@@ -1,14 +1,17 @@
 package org.scratchgame.dto;
 
 public class MapDto {
-  private final int row;
-  private final int col;
-  private final String[][] map;
+  private int row;
+  private int col;
+  private String[][] map;
 
   public MapDto(int row, int col) {
     this.row = row;
     this.col = col;
     this.map = new String[row][col];
+  }
+
+  public MapDto() {
   }
 
   public void setCell(int row, int col, String value) {
@@ -25,5 +28,17 @@ public class MapDto {
 
   public String[][] getMap() {
     return map;
+  }
+
+  public void setRow(int row) {
+    this.row = row;
+  }
+
+  public void setCol(int col) {
+    this.col = col;
+  }
+
+  public void setMap(String[][] map) {
+    this.map = map;
   }
 }

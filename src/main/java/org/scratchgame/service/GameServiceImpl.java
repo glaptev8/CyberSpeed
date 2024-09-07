@@ -20,9 +20,9 @@ public class GameServiceImpl implements GameService {
   @Override
   public GameResultDto run(GameConfigDto config, int bet) {
     var map = mapGenerator.generate(config);
-    var stringListMap = winningCombinationService.checkWinningCombinations(map, config);
-    var calculate = calculationService.calculate(stringListMap, config, map, bet);
+    var winingCombination = winningCombinationService.checkWinningCombinations(map, config);
+    var calculate = calculationService.calculate(winingCombination, config, map, bet);
 
-    return new GameResultDto(map.getMap(), calculate.reward(), stringListMap, calculate.appliedBonuses());
+    return new GameResultDto(map.getMap(), calculate.reward(), winingCombination, calculate.appliedBonuses());
   }
 }

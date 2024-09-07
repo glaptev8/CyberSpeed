@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.scratchgame.dto.CombinationDto;
 import org.scratchgame.dto.GameConfigDto;
+import org.scratchgame.dto.GroupType;
 import org.scratchgame.dto.MapDto;
 import org.scratchgame.dto.WinCombinationType;
 
@@ -29,7 +30,7 @@ public class SameSymbolsStrategy implements WinningCombinationStrategy {
 
       for (Map.Entry<String, CombinationDto> combination : config.winCombinations().entrySet()) {
         CombinationDto combo = combination.getValue();
-        if (WinCombinationType.SAME_SYMBOLS.equals(combo.combinationType()) && count == combo.count()) {
+        if (GroupType.SAME_SYMBOLS.equals(combo.group()) && count == combo.count()) {
           winningCombinations.putIfAbsent(symbol, new ArrayList<>());
           winningCombinations.get(symbol).add(combination.getKey());
         }

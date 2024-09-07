@@ -1,0 +1,49 @@
+{
+  "columns": 3,
+  "rows": 3,
+  "symbols": {
+    "A": {
+      "reward_multiplier": 5,
+      "type": "standard"
+    },
+    "B": {
+      "reward_multiplier": 3,
+      "type": "standard"
+    },
+    "C": {
+      "reward_multiplier": 2,
+      "type": "standard"
+    },
+    "+1000": {
+      "type": "bonus",
+      "impact": "extra_bonus",
+      "extra": 1000
+    }
+  },
+  "probabilities": {
+    "standard_symbols": [
+      {
+        "column": 0,
+        "row": 0,
+        "symbols": {
+          "A": 1,
+          "B": 2,
+          "C": 3
+        }
+      }
+    ],
+    "bonus_symbols": {
+      "symbols": {
+        "+1000": 1,
+        "MISS": 2
+      }
+    }
+  },
+  "win_combinations": {
+    "same_symbol_3_times": {
+      "reward_multiplier": 2,
+      "count": 3,
+      "group": "same_symbols"
+    }
+  }
+}

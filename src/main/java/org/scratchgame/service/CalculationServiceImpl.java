@@ -44,7 +44,7 @@ public class CalculationServiceImpl implements CalculationService {
       reward = reward.add(symbolReward);
     }
 
-    return reward;
+    return reward.subtract(new BigDecimal(bet));
   }
 
   private CalculationResultDto calculateWithBonuses(BigDecimal baseReward,

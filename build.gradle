@@ -15,8 +15,12 @@ repositories {
 
 dependencies {
   implementation "com.fasterxml.jackson.core:jackson-databind:$jackson"
+
+  testImplementation platform("org.junit:junit-bom:$junit")
+  testImplementation "org.mockito:mockito-core:$mockito"
+  testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 test {
-
+  useJUnitPlatform()
 }

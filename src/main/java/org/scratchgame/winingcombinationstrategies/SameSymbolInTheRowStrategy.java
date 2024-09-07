@@ -3,6 +3,7 @@ package org.scratchgame.winingcombinationstrategies;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Function;
 
 import org.scratchgame.dto.CombinationDto;
@@ -17,12 +18,12 @@ public class SameSymbolInTheRowStrategy implements WinningCombinationStrategy {
 
   @Override
   public void check(MapDto map, GameConfigDto config, Map<String, List<String>> winningCombinations) {
-    for (CombinationDto combination : config.winCombinations().values()) {
-      if (GroupType.HORIZONTALLY_LINEAR_SYMBOLS.equals(combination.group()) ||
-          GroupType.VERTICALLY_LINEAR_SYMBOLS.equals(combination.group()) ||
-          GroupType.LTR_DIAGONALLY_LINEAR_SYMBOLS.equals(combination.group()) ||
-          GroupType.RTL_DIAGONALLY_LINEAR_SYMBOLS.equals(combination.group())) {
-        for (List<String> coveredArea : combination.coveredArea()) {
+    for (Entry<String, CombinationDto> entry : config.winCombinations().entrySet()) {
+      if (GroupType.HORIZONTALLY_LINEAR_SYMBOLS.equals(entry.getValue().group()) ||
+          GroupType.VERTICALLY_LINEAR_SYMBOLS.equals(entry.getValue().group()) ||
+          GroupType.LTR_DIAGONALLY_LINEAR_SYMBOLS.equals(entry.getValue().group()) ||
+          GroupType.RTL_DIAGONALLY_LINEAR_SYMBOLS.equals(entry.getValue().group())) {
+        for (List<String> coveredArea : entry.getValue().coveredArea()) {
           String firstSymbol = map.getMap()[getRow.apply(coveredArea.getFirst())][getCol.apply(coveredArea.getFirst())];
           boolean isWinning = true;
 
@@ -37,7 +38,7 @@ public class SameSymbolInTheRowStrategy implements WinningCombinationStrategy {
 
           if (isWinning) {
             winningCombinations.putIfAbsent(firstSymbol, new ArrayList<>());
-            winningCombinations.get(firstSymbol).add(combination.group().toString().toLowerCase());
+            winningCombinations.get(firstSymbol).add(entry.getKey());
           }
         }
       }
